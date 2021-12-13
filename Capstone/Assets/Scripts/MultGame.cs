@@ -15,6 +15,7 @@ public class MultGame : MonoBehaviour
     private List<int> usedAnswers = new List<int>();
 
     private int aVal, bVal, cVal;
+    private int hVal;
 
     private Button choice;
 
@@ -68,9 +69,17 @@ public class MultGame : MonoBehaviour
     {
         aVal = Random.Range(1, 10);
         bVal = Random.Range(1, 10);
-        cVal = aVal * bVal;
-
-        question.GetComponent<TextMeshProUGUI>().text = aVal.ToString() + " x " + bVal.ToString() + " = ?";
+        hVal = Random.Range(1, 10);
+        if (MenuManager.instance.hardMode == false)
+        {
+            cVal = aVal * bVal;
+            question.GetComponent<TextMeshProUGUI>().text = aVal.ToString() + " x " + bVal.ToString() + " = ?";
+        }
+        else
+        {
+            cVal = aVal * bVal * hVal;
+            question.GetComponent<TextMeshProUGUI>().text = aVal.ToString() + " x " + bVal.ToString() + " x " + hVal.ToString() + " = ?";
+        }
     }
 
     public void OnClicked(Button button)

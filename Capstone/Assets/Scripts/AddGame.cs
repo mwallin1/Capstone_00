@@ -7,7 +7,7 @@ using TMPro;
 public class AddGame : MonoBehaviour
 {
     
-
+    
 
     [SerializeField]
     private List<Button> answers = new List<Button>();
@@ -18,6 +18,7 @@ public class AddGame : MonoBehaviour
     private List<int> usedAnswers = new List<int>();
 
     private int aVal, bVal, cVal;
+    private int hVal;
 
     private Button choice;
 
@@ -64,9 +65,19 @@ public class AddGame : MonoBehaviour
     public void changeQuestion() {
         aVal = Random.Range(1, 10);
         bVal = Random.Range(1, 10);
-        cVal = aVal + bVal;
+        hVal = Random.Range(1, 10);
+        if (MenuManager.instance.hardMode == false)
+        {
+            cVal = aVal + bVal;
+            question.GetComponent<TextMeshProUGUI>().text = aVal.ToString() + " + " + bVal.ToString() + " = ?";
+        }
+        else {
+            cVal = aVal + bVal + hVal;
+            question.GetComponent<TextMeshProUGUI>().text = aVal.ToString() + " + " + bVal.ToString() + " + " + hVal.ToString() + " = ?";
+        }
+        
 
-        question.GetComponent<TextMeshProUGUI>().text = aVal.ToString() + " + "  + bVal.ToString() + " = ?";
+        
     }
 
     public void OnClicked(Button button) {

@@ -47,6 +47,9 @@ public class StateManager : MonoBehaviour
             case State.spellGame:
                 MenuManager.instance.spellGameControl();
                 break;
+            case State.diffScreen:
+                MenuManager.instance.diffScreenControl();
+                break;
 
         }
     }
@@ -65,5 +68,6 @@ public enum State {
     subGame = 5,
     multGame = 6,
     divGame = 7,
-    spellGame = 8
+    spellGame = 8,
+    diffScreen = 9
 }

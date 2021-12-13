@@ -5,9 +5,14 @@ using UnityEngine;
 public class MenuManager : MonoBehaviour
 {
     public static MenuManager instance;
-    public GameObject TitleScreen, GameMenu, AboutScreen, MemoryGame, MemoryGameBack,MemoryGameTitle, AddGame, SubGame,SpellGame, MultGame, DivGame;
+    
+    public bool hardMode;
+
+    public GameObject TitleScreen, GameMenu, AboutScreen, MemoryGame, MemoryGameBack,MemoryGameTitle, AddGame, SubGame,SpellGame, MultGame, DivGame, DiffScreen;
+    
     void Awake() {
         instance = this;
+        
     }
 
     void update() {
@@ -27,6 +32,7 @@ public class MenuManager : MonoBehaviour
             MultGame.SetActive(false);
             DivGame.SetActive(false);
             MemoryGameTitle.SetActive(false);
+            DiffScreen.SetActive(false);
         }
     }
 
@@ -45,6 +51,7 @@ public class MenuManager : MonoBehaviour
             MultGame.SetActive(false);
             DivGame.SetActive(false);
             MemoryGameTitle.SetActive(false);
+            DiffScreen.SetActive(false);
         }
     }
 
@@ -61,6 +68,7 @@ public class MenuManager : MonoBehaviour
             MultGame.SetActive(false);
             DivGame.SetActive(false);
             MemoryGameTitle.SetActive(false);
+            DiffScreen.SetActive(false);
         }
     }
 
@@ -78,6 +86,7 @@ public class MenuManager : MonoBehaviour
             MultGame.SetActive(false);
             DivGame.SetActive(false);
             MemoryGameTitle.SetActive(true);
+            DiffScreen.SetActive(false);
         }
     }
 
@@ -94,6 +103,7 @@ public class MenuManager : MonoBehaviour
             MultGame.SetActive(false);
             DivGame.SetActive(false);
             MemoryGameTitle.SetActive(false);
+            DiffScreen.SetActive(false);
         }
     }
 
@@ -112,6 +122,7 @@ public class MenuManager : MonoBehaviour
             MultGame.SetActive(false);
             DivGame.SetActive(false);
             MemoryGameTitle.SetActive(false);
+            DiffScreen.SetActive(false);
         }
     }
     
@@ -129,6 +140,7 @@ public class MenuManager : MonoBehaviour
             MultGame.SetActive(true);
             DivGame.SetActive(false);
             MemoryGameTitle.SetActive(false);
+            DiffScreen.SetActive(false);
         }
     }
  
@@ -146,6 +158,7 @@ public class MenuManager : MonoBehaviour
             MultGame.SetActive(false);
             DivGame.SetActive(true);
             MemoryGameTitle.SetActive(false);
+            DiffScreen.SetActive(false);
         }
     }
 
@@ -165,6 +178,39 @@ public class MenuManager : MonoBehaviour
             MultGame.SetActive(false);
             DivGame.SetActive(false);
             MemoryGameTitle.SetActive(false);
+            DiffScreen.SetActive(false);
         }
+    }
+
+    public void diffScreenControl()
+    {
+        if (StateManager.instance.State == State.diffScreen)
+        {
+
+            TitleScreen.SetActive(false);
+            GameMenu.SetActive(false);
+            AboutScreen.SetActive(false);
+            MemoryGame.SetActive(false);
+            MemoryGameBack.SetActive(false);
+            AddGame.SetActive(false);
+            SubGame.SetActive(false);
+            SpellGame.SetActive(true);
+            MultGame.SetActive(false);
+            DivGame.SetActive(false);
+            MemoryGameTitle.SetActive(false);
+            DiffScreen.SetActive(true);
+        }
+    }
+
+    public void setDiffUp() {
+        this.hardMode = true;
+        print(this.hardMode);
+        StateManager.instance.changeState(State.titleScreen);
+    }
+
+    public void setDiffDown() {
+        this.hardMode = false;
+        print(this.hardMode);
+        StateManager.instance.changeState(State.titleScreen);
     }
 }
